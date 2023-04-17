@@ -21,6 +21,8 @@ public class Post {
     @Column(length=1000000)
     @Lob
     private String body;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Author author;
     @Temporal(TemporalType.DATE)
     @CreationTimestamp
     private Date date;
@@ -66,6 +68,14 @@ public class Post {
     public String getDateStr() {
         DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
         return outputFormatter.format(this.date);
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public void setDate(Date date) {
